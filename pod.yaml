@@ -8,12 +8,13 @@ spec:
       image: springboot-app:latest  # Replace with your actual image name
       volumeMounts:
         - name: config-volume
-          mountPath: /config/application.properties
+          mountPath: /config/application.properties  # Where the file will appear in the container
           subPath: application.properties
       env:
         - name: SPRING_CONFIG_LOCATION
-          value: "file:/config/application.properties"  # Path to external config file
+          value: "file:/config/application.properties"  # Directs Spring Boot to use this file
   volumes:
     - name: config-volume
-      configMap:
-        name: app-config  # Reference to ConfigMap created earlier
+      hostPath:
+        path: /path/to/application.properties  # Path to your properties file on the host
+        type: File
