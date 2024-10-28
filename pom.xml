@@ -10,7 +10,7 @@
     <name>springboot-app</name>
 
     <properties>
-        <java.version>11</java.version>
+        <java.version>17</java.version>
         <spring-boot.version>2.5.4</spring-boot.version>
     </properties>
 
