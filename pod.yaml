@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: springboot-app
+spec:
+  containers:
+    - name: springboot-container
+      image: springboot-app:latest  # Replace with your actual image name
+      volumeMounts:
+        - name: config-volume
+          mountPath: /config/application.properties
+          subPath: application.properties
+      env:
+        - name: SPRING_CONFIG_LOCATION
+          value: "file:/config/application.properties"  # Path to external config file
+  volumes:
+    - name: config-volume
+      configMap:
+        name: app-config  # Reference to ConfigMap created earlier
